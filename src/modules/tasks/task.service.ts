@@ -8,12 +8,14 @@ export class TaskService {
     {id:3, title: "Aprendizaje", description: "seguir aprendiendo nest js"},
   ]
 
-  GetAllTask() {
-    return this.listTask
+  GetAllTask() { // Traer todas las Tasks
+    const allTasks = this.listTask
+    return allTasks
   }
 
-  GetOneTask(id:number) {
-    return this.listTask.find(task => task.id = id)
+  GetOneTask(id:number) { // Trear Tarea por Id 
+    const oneTask = this.listTask.find(task => task.id === id)
+    return oneTask
   }
 
 }

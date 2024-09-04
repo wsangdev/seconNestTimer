@@ -9,10 +9,12 @@ export class UserService {
   ]
 
   GetAllUser() { // Metodo para traer todos los Usuarios 
-    return this.listUsers
+    const allUsers = this.listUsers
+    return allUsers
   }
 
-  GetOneUser(id:number) {
-    return this.listUsers.find(item => item.id = id)
+  GetOneUser(id:number) { // Metodo para traer un usuario
+    const oneUser = this.listUsers.find(user => user.id === id)
+    return oneUser
   }
 }
