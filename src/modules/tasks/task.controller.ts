@@ -6,12 +6,12 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Get() // Obtiene todas las tareas 
-  GetAllTask() {
+  async GetAllTask() {
     return this.taskService.GetAllTask()
   }
 
   @Get(":id")
-  GetOneTask(@Param('id') id:string) {
+  async GetOneTask(@Param('id') id:string) {
     return this.taskService.GetOneTask(Number(id))
   }
 }

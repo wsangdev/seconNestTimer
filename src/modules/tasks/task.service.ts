@@ -1,20 +1,17 @@
 import { Injectable } from "@nestjs/common";
+import { PrismaClient } from "@prisma/client";
 
 @Injectable()
 export class TaskService {
-  private listTask = [
-    {id:1, title: "Quehaceres", description: "ir de compras al super"},
-    {id:2, title: "Servicios", description: "pasear al perro firulais"},
-    {id:3, title: "Aprendizaje", description: "seguir aprendiendo nest js"},
-  ]
+  constructor(private prisma: PrismaClient) {}
 
-  GetAllTask() { // Traer todas las Tasks
-    const allTasks = this.listTask
+  async GetAllTask() { // Traer todas las Tasks
+    const allTasks = await this.prisma.task.findMany();
     return allTasks
   }
 
-  GetOneTask(id:number) { // Trear Tarea por Id 
-    const oneTask = this.listTask.find(task => task.id === id)
+  async GetOneTask(id:number) { // Trear Tarea por Id 
+    const oneTask = await this.prisma.task.findUnique({ where: {id} });
     return oneTask
   }
 
