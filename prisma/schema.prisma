@@ -10,31 +10,34 @@ datasource db {
 
 // 1 Relacion de mi modelo USER 
 model User {
- id Int @id @default(autoincrement())
- username String @unique
- email String @unique
+ id       Int      @id @default(autoincrement())
+ username String   @unique
+ email    String   @unique
  password String 
  createAt DateTime @default(now())
+
  task Task[]
  timer Timer[]
 }
 
+// 2 Relacion de mi Modelo TASK
 model Task {
-  id Int @id @default(autoincrement())
-  title String
+  id          Int      @id @default(autoincrement())
+  title       String
   description String? // ?: Significa Opcional
-  user_id Int // Ultimo campo para relacionar 
+  user_id     Int // Ultimo campo para relacionar 
 
   user User @relation(references: [id], fields: [user_id])
   timer Timer[]
 }
 
+// 3 Relacion de mi Modelo TIMER
 model Timer {
-  id Int @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   startTime DateTime
-  endTime DateTime?
-  user_id Int 
-  task_id Int?
+  endTime   DateTime?
+  user_id   Int 
+  task_id   Int?
 
   user User  @relation(references: [id], fields: [user_id])
   task Task? @relation(references: [id], fields: [task_id])
